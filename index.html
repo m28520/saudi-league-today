@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>مباريات الدوري السعودي - اليوم</title>
+<style>
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: #eee;
+    margin: 20px;
+  }
+  .match-event {
+    background: #1e1e1e;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 0 10px #0f75bc;
+  }
+  .team-logo img {
+    border-radius: 50%;
+    border: 2px solid #0f75bc;
+  }
+  .team-name {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 5px;
+    text-align: center;
+  }
+  .first-team, .left-team {
+    flex: 1;
+    text-align: center;
+  }
+  .match-time {
+    flex: 0.8;
+    text-align: center;
+  }
+  .match-timing {
+    font-size: 1.1em;
+  }
+  .match-date {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #6ab04c;
+  }
+  .match-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    font-size: 0.85em;
+  }
+  .match-info ul li {
+    margin-bottom: 3px;
+  }
+  #overlay-match {
+    display: none;
+  }
+  #no-matches {
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 50px;
+    color: #bbb;
+  }
+</style>
+</head>
+<body>
+
+<h1>مباريات الدوري السعودي - مباريات اليوم</h1>
+
+<div id="matches-container">
+
+  <!-- مباراة الاتحاد × النصر -->
+  <div class='match-event' data-date='2025-08-19'>
+    <a href='go:alittihad-vs-alnassr'>
+      <div id='overlay-match'><div id='watch-match'></div></div>
+    </a>
+    <div class='first-team'>
+      <div class='team-logo'>
+        <img alt="الاتحاد" src="https://upload.wikimedia.org/wikipedia/ar/2/2b/Al-Ittihad_Club_Logo.png" height="70" width="70" />
+      </div>
+      <div class='team-name'>الاتحاد</div>
+    </div>
+    <div class='match-time'>
+      <div class='match-timing'>
+        <div class='match-hour'>15:00</div>
+        <span class='match-date'>🗓 19 أغسطس</span>
+      </div>
+    </div>
+    <div class='left-team'>
+      <div class='team-logo'>
+        <img alt="النصر" src="https://upload.wikimedia.org/wikipedia/en/d/d2/Al-Nassr_Logo.png" height="70" width="70" />
+      </div>
+      <div class='team-name'>النصر</div>
+    </div>
+    <div class='match-info'>
+      <ul>
+        <li><span>القناة الناقلة: SSC</span></li>
+        <li><span>المعلق: محمد الغامدي</span></li>
+        <li><span>البطولة: كأس السوبر السعودي</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- مباراة الهلال × القادسية -->
+  <div class='match-event' data-date='2025-08-20'>
+    <a href='go:alhilal-vs-alqadisiyah'>
+      <div id='overlay-match'><div id='watch-match'></div></div>
+    </a>
+    <div class='first-team'>
+      <div class='team-logo'>
+        <img alt="الهلال" src="https://upload.wikimedia.org/wikipedia/commons/0/01/Al-hilal_logo.png" height="70" width="70" />
+      </div>
+      <div class='team-name'>الهلال</div>
+    </div>
+    <div class='match-time'>
+      <div class='match-timing'>
+        <div class='match-hour'>15:00</div>
+        <span class='match-date'>🗓 20 أغسطس</span>
+      </div>
+    </div>
+    <div class='left-team'>
+      <div class='team-logo'>
+        <img alt="القادسية" src="https://upload.wikimedia.org/wikipedia/ar/6/69/Al-Qadsiah_Logo.png" height="70" width="70" />
+      </div>
+      <div class='team-name'>القادسية</div>
+    </div>
+    <div class='match-info'>
+      <ul>
+        <li><span>القناة الناقلة: SSC</span></li>
+        <li><span>المعلق: عبد الله الشريدة</span></li>
+        <li><span>البطولة: كأس السوبر السعودي</span></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div id="no-matches" style="display:none;">لا توجد مباريات اليوم</div>
+
+<script>
+  function showTodayMatches() {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    const todayStr = `${yyyy}-${mm}-${dd}`;
+
+    const matches = document.querySelectorAll('.match-event');
+    let shownAny = false;
+
+    matches.forEach(match => {
+      if (match.dataset.date === todayStr) {
+        match.style.display = 'flex';
+        shownAny = true;
+      } else {
+        match.style.display = 'none';
+      }
+    });
+
+    document.getElementById('no-matches').style.display = shownAny ? 'none' : 'block';
+  }
+
+  showTodayMatches();
+</script>
+
+</body>
+</html>
+
